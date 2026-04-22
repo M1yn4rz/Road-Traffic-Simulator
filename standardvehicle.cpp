@@ -8,9 +8,9 @@ StandardVehicle::StandardVehicle(Edge* start, Simulation* sim, int id)
 {
 }
 
-QColor StandardVehicle::GetColor() const
+VehicleColor StandardVehicle::GetColor() const
 {
-    return Qt::blue;
+    return VehicleColor::Blue;
 }
 
 double StandardVehicle::GetSpeed() const

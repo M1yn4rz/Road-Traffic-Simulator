@@ -2,12 +2,20 @@
 #define VEHICLE_H
 
 #include <vector>
-#include <QColor>
 
 class Edge;
 class Node;
 class Simulation;
 class TrafficLight;
+
+enum class VehicleColor
+{
+    Blue,
+    Red,
+    Green,
+    Yellow,
+    White
+};
 
 /**
  * @brief Abstract base class representing a vehicle in the traffic simulation.
@@ -47,7 +55,7 @@ public:
     virtual void Move();
 
     /** @brief Returns the vehicle color. @return Vehicle color. */
-    virtual QColor GetColor() const = 0;
+    virtual VehicleColor GetColor() const = 0;
 
     /** @brief Returns the vehicle speed. @return Vehicle speed value. */
     virtual double GetSpeed() const = 0;

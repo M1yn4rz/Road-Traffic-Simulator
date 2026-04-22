@@ -18,9 +18,9 @@ void EmergencyVehicle::SetRoute(const std::vector<Edge*>& newRoute)
     routeIndex = 1;
 }
 
-QColor EmergencyVehicle::GetColor() const
+VehicleColor EmergencyVehicle::GetColor() const
 {
-    return Qt::red;
+    return VehicleColor::Red;
 }
 
 double EmergencyVehicle::GetSpeed() const

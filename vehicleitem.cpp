@@ -4,13 +4,25 @@
 #include "edge.h"
 #include <QFont>
 
+static QColor ToQtColor(VehicleColor color)
+{
+    switch(color)
+    {
+        case VehicleColor::Blue: return Qt::blue;
+        case VehicleColor::Red: return Qt::red;
+        case VehicleColor::Green: return Qt::green;
+        case VehicleColor::Yellow: return Qt::yellow;
+        default: return Qt::white;
+    }
+}
+
 VehicleItem::VehicleItem(Vehicle* vehicle_)
     : vehicle(vehicle_)
     , label(new QGraphicsTextItem(QString::number(vehicle->GetId()), this))
 {
     setTransformOriginPoint(0, 0);
     setRect(-60, -8, 30, 16);
-    setBrush(QBrush(vehicle->GetColor()));
+    setBrush(QBrush(ToQtColor(vehicle->GetColor())));
 
     QFont font;
     font.setPointSize(20);

@@ -24,7 +24,7 @@ public:
     PrivateVehicle(Edge* start, Simulation* sim, int vehicleId);
 
     /** @brief Returns vehicle display color. */
-    QColor GetColor() const override;
+    VehicleColor GetColor() const override;
 
     /** @brief Returns movement speed. */
     double GetSpeed() const override;

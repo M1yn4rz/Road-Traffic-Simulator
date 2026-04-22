@@ -46,9 +46,9 @@ void PrivateVehicle::SetRoute(const std::vector<Edge*>& newRoute)
     }
 }
 
-QColor PrivateVehicle::GetColor() const
+VehicleColor PrivateVehicle::GetColor() const
 {
-    return Qt::green;
+    return VehicleColor::Green;
 }
 
 double PrivateVehicle::GetSpeed() const

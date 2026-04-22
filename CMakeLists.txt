@@ -12,6 +12,24 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+set(CORE_SOURCES
+    simulationcontroller.h simulationcontroller.cpp
+    simulation.h simulation.cpp
+    node.h node.cpp
+    edge.h edge.cpp
+    graph.h graph.cpp
+    vehicle.h vehicle.cpp
+    trafficlight.h trafficlight.cpp
+    standardvehicle.h standardvehicle.cpp
+    emergencyvehicle.h emergencyvehicle.cpp
+    privatevehicle.h privatevehicle.cpp
+    idgenerator.h
+)
+
+add_library(SimulationCore STATIC
+    ${CORE_SOURCES}
+)
+
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
@@ -23,19 +41,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Road-Traffic-Simulator
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        simulationcontroller.h simulationcontroller.cpp
-        simulation.h simulation.cpp
-        node.h node.cpp
-        edge.h edge.cpp
-        graph.h graph.cpp
-        vehicle.h vehicle.cpp
         mapview.h mapview.cpp
         vehicleitem.h vehicleitem.cpp
-        trafficlight.h trafficlight.cpp
-        standardvehicle.h standardvehicle.cpp
-        emergencyvehicle.h emergencyvehicle.cpp
-        privatevehicle.h privatevehicle.cpp
-        idgenerator.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Road-Traffic-Simulator APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -55,7 +62,10 @@ else()
     endif()
 endif()
 
-target_link_libraries(Road-Traffic-Simulator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(Road-Traffic-Simulator PRIVATE
+    Qt${QT_VERSION_MAJOR}::Widgets
+    SimulationCore
+)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
